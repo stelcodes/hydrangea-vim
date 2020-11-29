@@ -12,7 +12,7 @@ let s:config={
 \ 'tabline':{
 \   'right':[["#1e222c","#996ddb"],["#2a303b","#c398fe"]],
 \   'middle':[["#c3d5ec","#1e222c"]],
-\   'tabsel':[["#1e222c","#c398fe"]],
+\   'tabsel':[["#1e222c","#996ddb"]],
 \   'left':[["#c3d5ec","#3b4351"]]
 \ },
 \ 'normal':{

@@ -155,7 +155,7 @@
     {:left    [{:fg base2 :bg base01}]
      :middle  [{:fg base2 :bg base03}]
      :right   [{:fg base03 :bg violet1} {:fg base02 :bg violet2}]
-     :tabsel  [{:fg base03 :bg violet2}]}})
+     :tabsel  [{:fg base03 :bg violet1}]}})
 
 (defn keyword->vimscript-key [k]
   (str "'" (symbol k) "':"))
