@@ -161,7 +161,7 @@
   (str "'" (symbol k) "':"))
 
 (defn lightline-style->vimscript [style]
-  (str "[[\"" (:fg style) "\"],[\"" (:bg style) "\"]]"))
+  (str "[\"" (:fg style) "\",\"" (:bg style) "\"]"))
 
 (defn position-config->vimscript [[position styles]]
   (let [inner (->>
@@ -182,8 +182,8 @@
     (map mode-config->vimscript lightline-config) $
     (interpose "\\ },\n" $)
     (apply str $)
-    (str "let s:config={\n" $ "\\}\n")
-    (str $ "let g:lightline#colorscheme#hydrangea#palette = lightline#colorscheme#flatten(s:config)")))
+    (str "let s:config={\n" $ "\\}}\n")
+    (str $ "let g:lightline#colorscheme#hydrangea#palette = s:config")))
 
 (print lightline-vimscript)
 (def lightline-file-path "autoload/lightline/colorscheme/hydrangea.vim")
