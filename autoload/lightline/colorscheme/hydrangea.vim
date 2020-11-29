@@ -27,4 +27,4 @@ let s:config={
 \   'middle':[["#1e222c","#e2ccfe"]],
 \   'left':[["#1e222c","#996ddb"],["#1e222c","#c398fe"]]
 \}}
-let g:lightline#colorscheme#hydrangea#palette = s:config
+let g:lightline#colorscheme#hydrangea#palette = lightline#colorscheme#fill(s:config)

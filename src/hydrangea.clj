@@ -183,7 +183,7 @@
     (interpose "\\ },\n" $)
     (apply str $)
     (str "let s:config={\n" $ "\\}}\n")
-    (str $ "let g:lightline#colorscheme#hydrangea#palette = s:config")))
+    (str $ "let g:lightline#colorscheme#hydrangea#palette = lightline#colorscheme#fill(s:config)")))
 
 (print lightline-vimscript)
 (def lightline-file-path "autoload/lightline/colorscheme/hydrangea.vim")
