@@ -164,24 +164,28 @@
   (str "[[\"" (:fg style) "\"],[\"" (:bg style) "\"]]"))
 
 (defn position-config->vimscript [[position styles]]
-  (let [inner (as->
-                (map lightline-style->vimscript styles) $
-                (interleave $ (repeat ","))
-                (apply str $))]
-    (str "{" (keyword->vimscript-key position) "[" inner "]}")))
+  (let [inner (->>
+                (map lightline-style->vimscript styles)
+                (interpose ",")
+                (apply str))]
+    (str "\\   " (keyword->vimscript-key position) "[" inner "]")))
 
 (defn mode-config->vimscript [[mode mode-config]]
-  (let [inner (as->
-                (map position-config->vimscript mode-config) $
-                (interleave $ (repeat ",\n"))
-                (print "=====" (type $) "=====")
-                (apply str $))]
-    (str "{" (keyword->vimscript-key mode) inner "}")))
+  (let [inner (->>
+                (map position-config->vimscript mode-config)
+                (interpose ",\n")
+                (apply str))]
+    (str "\\ " (keyword->vimscript-key mode) "{\n" inner "\n")))
 
 (def lightline-vimscript
   (as->
     (map mode-config->vimscript lightline-config) $
-    (interleave $ (repeat ",\n"))
-    (apply str $)))
+    (interpose "\\ },\n" $)
+    (apply str $)
+    (str "let s:config={\n" $ "\\}\n")
+    (str $ "let g:lightline#colorscheme#hydrangea#palette = lightline#colorscheme#flatten(s:config)")))
 
 (print lightline-vimscript)
+(def lightline-file-path "autoload/lightline/colorscheme/hydrangea.vim")
+(spit lightline-file-path lightline-vimscript)
+(println (str "\n" "Wrote to file: " lightline-file-path))
