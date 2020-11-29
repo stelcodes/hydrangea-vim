@@ -116,7 +116,7 @@
 (defn link->vimscript [[syntax-group-1 syntax-group-2]]
   (str "hi link " (symbol syntax-group-1) " " (symbol syntax-group-2)))
 
-(def vimscript
+(def syntax-vimscript
   (apply str
          (interleave
            (concat
@@ -126,8 +126,62 @@
              (map link->vimscript syntax-links))
            (repeat "\n")))) 
 
-; (run! println vimscript)
-(print vimscript)
+(print syntax-vimscript)
+
 (def colors-file-path "colors/hydrangea.vim")
-(spit colors-file-path vimscript)
+(spit colors-file-path syntax-vimscript)
 (println (str "\n" "Wrote to file: " colors-file-path))
+
+(def lightline-config
+  {:normal
+    {:left    [{:fg base03 :bg blue1} {:fg base03 :bg blue2}]
+     :middle  [{:fg base03 :bg blue3}]
+     :right   [{:fg base03 :bg blue1} {:fg base03 :bg blue2}]
+     :error   [{:fg red1 :bg base02}]
+     :warning [{:fg violet1 :bg base01}]}
+   :insert
+    {:left    [{:fg base03 :bg cyan1} {:fg base03 :bg cyan2}]
+     :middle  [{:fg base03 :bg cyan3}]
+     :right   [{:fg base03 :bg cyan1} {:fg base03 :bg cyan2}]}
+   :visual
+    {:left    [{:fg base03 :bg violet1} {:fg base03 :bg violet2}]
+     :middle  [{:fg base03 :bg violet3}]
+     :right   [{:fg base03 :bg violet1} {:fg base03 :bg violet2}]}
+   :replace
+    {:left    [{:fg base03 :bg magenta1} {:fg base03 :bg magenta2}]
+     :middle  [{:fg base03 :bg magenta3}]
+     :right   [{:fg base03 :bg magenta1} {:fg base03 :bg magenta2}]}
+   :tabline
+    {:left    [{:fg base2 :bg base01}]
+     :middle  [{:fg base2 :bg base03}]
+     :right   [{:fg base03 :bg violet1} {:fg base02 :bg violet2}]
+     :tabsel  [{:fg base03 :bg violet2}]}})
+
+(defn keyword->vimscript-key [k]
+  (str "'" (symbol k) "':"))
+
+(defn lightline-style->vimscript [style]
+  (str "[[\"" (:fg style) "\"],[\"" (:bg style) "\"]]"))
+
+(defn position-config->vimscript [[position styles]]
+  (let [inner (as->
+                (map lightline-style->vimscript styles) $
+                (interleave $ (repeat ","))
+                (apply str $))]
+    (str "{" (keyword->vimscript-key position) "[" inner "]}")))
+
+(defn mode-config->vimscript [[mode mode-config]]
+  (let [inner (as->
+                (map position-config->vimscript mode-config) $
+                (interleave $ (repeat ",\n"))
+                (print "=====" (type $) "=====")
+                (apply str $))]
+    (str "{" (keyword->vimscript-key mode) inner "}")))
+
+(def lightline-vimscript
+  (as->
+    (map mode-config->vimscript lightline-config) $
+    (interleave $ (repeat ",\n"))
+    (apply str $)))
+
+(print lightline-vimscript)
