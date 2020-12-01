@@ -74,3 +74,22 @@ hi link makeSpecTarget Special
 hi link makeIdent Type
 hi link makeTarget Function
 hi link String Constant
+
+" Terminal Colors
+" ===========
+let g:terminal_color_0  = '#1e222c'
+let g:terminal_color_1  = '#fe7ecd'
+let g:terminal_color_2  = '#36c2c2'
+let g:terminal_color_3  = '#c398fe'
+let g:terminal_color_4  = '#56c7ee'
+let g:terminal_color_5  = '#537dd5'
+let g:terminal_color_6  = '#e2ccfe'
+let g:terminal_color_7  = '#edf5ff'
+let g:terminal_color_8  = '#c9d4fd'
+let g:terminal_color_9  = '#1e222c'
+let g:terminal_color_10  = '#1e222c'
+let g:terminal_color_11  = '#1e222c'
+let g:terminal_color_12  = '#8baafe'
+let g:terminal_color_13  = '#c398fe'
+let g:terminal_color_14  = '#1e222c'
+let g:terminal_color_15  = '#1e222c'

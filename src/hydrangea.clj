@@ -1,5 +1,7 @@
 #!/usr/bin/env bb
 
+(require '[clojure.string :as str])
+
 ; Palette
 (def base03    "#1e222c") ; L* = 44
 (def base02    "#2a303b") ; L* = 50
@@ -126,11 +128,37 @@
              (map link->vimscript syntax-links))
            (repeat "\n")))) 
 
-(print syntax-vimscript)
+(def terminal-colors
+  [[:idk base03]
+   [:error-red magenta2]
+   [:cdh teal2]
+   [:commit-yellow violet2]
+   [:dirs cyan2]
+   [:prompt-and-symb-links blue1]
+   [:idk violet3]
+   [:normal-text base3]
+   [:highlighting-bkgd blue3]
+   [:idk base03]
+   [:idk base03]
+   [:idk base03]
+   [:previous-flags blue2]
+   [:valid-command violet2]
+   [:idk base03]
+   [:idk base03]])
 
+(defn poop [index item]
+  (str "let g:terminal_color_" index "  = '" (last item) "'"))
+
+(def terminal-vimscript
+  (->> terminal-colors
+       (map-indexed poop)
+       (str/join "\n")
+       (str "\" Terminal Colors\n\" ===========\n")))
+
+(def colors-final-vimscript (str syntax-vimscript "\n" terminal-vimscript))
 (def colors-file-path "colors/hydrangea.vim")
-(spit colors-file-path syntax-vimscript)
-(println (str "\n" "Wrote to file: " colors-file-path))
+(spit colors-file-path colors-final-vimscript)
+(println (str colors-final-vimscript "\n" "Wrote to file: " colors-file-path))
 
 (def lightline-config
   {:normal
@@ -189,3 +217,6 @@
 (def lightline-file-path "autoload/lightline/colorscheme/hydrangea.vim")
 (spit lightline-file-path lightline-vimscript)
 (println (str "\n" "Wrote to file: " lightline-file-path))
+
+
+
