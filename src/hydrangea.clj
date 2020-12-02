@@ -109,25 +109,6 @@
    :makeSpecTarget :Special
    :makeTarget     :Function})
 
-(defn style->vimscript [[syntax-group style]]
-  (let [guifg (when (:fg style)   (str " guifg=" (:fg style)))
-        guibg (when (:bg style)   (str " guibg=" (:bg style)))
-        gui   (when (:deco style) (str " gui=" (:deco style)))]
-    (str "hi " (symbol syntax-group) guifg guibg gui)))
-
-(defn link->vimscript [[syntax-group-1 syntax-group-2]]
-  (str "hi link " (symbol syntax-group-1) " " (symbol syntax-group-2)))
-
-(def syntax-vimscript
-  (apply str
-         (interleave
-           (concat
-             ["\" Styles" "\" =========="]
-             (map style->vimscript syntax-styles)
-             ["" "\" Links" "\" =========="]
-             (map link->vimscript syntax-links))
-           (repeat "\n")))) 
-
 (def terminal-colors
   [[:idk base03]
    [:error-red magenta2]
@@ -145,20 +126,6 @@
    [:valid-command violet2]
    [:idk base03]
    [:idk base03]])
-
-(defn poop [index item]
-  (str "let g:terminal_color_" index "  = '" (last item) "'"))
-
-(def terminal-vimscript
-  (->> terminal-colors
-       (map-indexed poop)
-       (str/join "\n")
-       (str "\" Terminal Colors\n\" ===========\n")))
-
-(def colors-final-vimscript (str syntax-vimscript "\n" terminal-vimscript))
-(def colors-file-path "colors/hydrangea.vim")
-(spit colors-file-path colors-final-vimscript)
-(println (str colors-final-vimscript "\n" "Wrote to file: " colors-file-path))
 
 (def lightline-config
   {:normal
@@ -185,38 +152,64 @@
      :right   [{:fg base03 :bg violet1} {:fg base02 :bg violet2}]
      :tabsel  [{:fg base03 :bg violet1}]}})
 
+;; Syntax Highlighting Functions
+(defn style->vimscript [[syntax-group style]]
+  (let [guifg (when (:fg style)   (str " guifg=" (:fg style)))
+        guibg (when (:bg style)   (str " guibg=" (:bg style)))
+        gui   (when (:deco style) (str " gui=" (:deco style)))]
+    (str "hi " (symbol syntax-group) guifg guibg gui)))
+
+(defn link->vimscript [[syntax-group-1 syntax-group-2]]
+  (str "hi link " (symbol syntax-group-1) " " (symbol syntax-group-2)))
+
+;; Terminal Color Functions
+(defn terminal-vimscript-command [index item]
+  (str "let g:terminal_color_" index "  = '" (last item) "'"))
+
+;; Lightline Functions
 (defn keyword->vimscript-key [k]
   (str "'" (symbol k) "':"))
 
 (defn lightline-style->vimscript [style]
-  (str "[\"" (:fg style) "\",\"" (:bg style) "\"]"))
+  (str "[\"" (:fg style) "\",\"" (:bg style) "\"],"))
 
 (defn position-config->vimscript [[position styles]]
-  (let [inner (->>
-                (map lightline-style->vimscript styles)
-                (interpose ",")
-                (apply str))]
-    (str "\\   " (keyword->vimscript-key position) "[" inner "]")))
+  (let [inner (str/join
+                (map lightline-style->vimscript styles))]
+    (str "\\   " (keyword->vimscript-key position) "[" inner "],")))
 
-(defn mode-config->vimscript [[mode mode-config]]
-  (let [inner (->>
-                (map position-config->vimscript mode-config)
-                (interpose ",\n")
-                (apply str))]
-    (str "\\ " (keyword->vimscript-key mode) "{\n" inner "\n")))
+(defn lightline-mode-config->vimscript [[mode mode-config]]
+  (let [inner (str/join "\n"
+                (map position-config->vimscript mode-config))]
+    (str "\\ " (keyword->vimscript-key mode) "{\n" inner "},")))
 
-(def lightline-vimscript
-  (as->
-    (map mode-config->vimscript lightline-config) $
-    (interpose "\\ },\n" $)
-    (apply str $)
-    (str "let s:config={\n" $ "\\}}\n")
-    (str $ "let g:lightline#colorscheme#hydrangea#palette = lightline#colorscheme#fill(s:config)")))
+;; Generate vimscript 
+(def main-colorscheme-vimscript
+  (str/join "\n"
+   (concat
+     ["\" Styles" "\" =========="]
+     (map style->vimscript syntax-styles)
+     ["" "\" Links" "\" =========="]
+     (map link->vimscript syntax-links)
+     ["" "\" Terminal Colors" "\" ==========="]
+     (map-indexed terminal-vimscript-command terminal-colors)))) 
 
-(print lightline-vimscript)
-(def lightline-file-path "autoload/lightline/colorscheme/hydrangea.vim")
-(spit lightline-file-path lightline-vimscript)
-(println (str "\n" "Wrote to file: " lightline-file-path))
+(def lightline-colorscheme-vimscript
+  (str/join "\n"
+    (concat
+      ["let s:config={"]
+      (map lightline-mode-config->vimscript lightline-config)
+      ["\\}" "let g:lightline#colorscheme#hydrangea#palette = lightline#colorscheme#fill(s:config)"])))
+
+;; Write vimscript to files
+(def colorscheme-file-path "colors/hydrangea.vim")
+(spit colorscheme-file-path main-colorscheme-vimscript)
+(println (str main-colorscheme-vimscript "\n" "Wrote to file: " colorscheme-file-path))
+
+(print lightline-colorscheme-vimscript)
+(def lightline-colorscheme-file-path "autoload/lightline/colorscheme/hydrangea.vim")
+(spit lightline-colorscheme-file-path lightline-colorscheme-vimscript)
+(println (str "\n" "Wrote to file: " lightline-colorscheme-file-path))
 
 
 
