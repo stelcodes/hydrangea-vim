@@ -170,8 +170,12 @@
    (let [{:keys [fg bg deco]} style]
      (->> ["hi"
            (symbol syntax-group)
-           (when fg (str "guifg=" (:gui fg) " ctermfg=" (:cterm fg)))
-           (when bg (str "guibg=" (:gui bg) " ctermbg=" (:cterm fg)))
+           (cond (map? fg) (str "guifg=" (:gui fg) " ctermfg=" (:cterm fg))
+                 (string? fg) (str "guifg=" fg " ctermfg=" fg)
+                 :else nil)
+           (cond (map? bg) (str "guibg=" (:gui bg) " ctermbg=" (:cterm bg))
+                 (string? bg) (str "guibg=" bg " ctermbg=" bg)
+                 :else nil)
            (when deco (str "gui=" deco " cterm=" deco))]
           ;; filter identity idiom removes falsey values from collection
           (filter identity)
