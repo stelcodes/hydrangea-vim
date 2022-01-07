@@ -3,30 +3,30 @@
 (require '[clojure.string :as str])
 
 ; Palette
-(def base03    "#1e222c") ; L* = 44
-(def base02    "#2a303b") ; L* = 50
-(def base01    "#3b4351") ; L* = 58
-(def base00    "#586374") ; L* = 68
-(def base2     "#c3d5ec") ; L* = 93
-(def base3     "#edf5ff") ; L* = 99
-(def red01     "#681c36")
-(def red1      "#e91e63")
-(def teal01    "#134242")
-(def teal2     "#36c2c2")
-(def cyan01    "#064253")
-(def cyan1     "#169ec4")
-(def cyan2     "#56c7ee")
-(def cyan3     "#bcebfe")
-(def blue1     "#537dd5")
-(def blue2     "#8baafe")
-(def blue3     "#c9d4fd")
-(def violet1   "#996ddb")
-(def violet2   "#c398fe")
-(def violet3   "#e2ccfe")
-(def magenta01 "#68024b")
-(def magenta1  "#e242ac")
-(def magenta2  "#fe7ecd")
-(def magenta3  "#ffc3e4")
+(def base03    {:gui "#1e222c" :cterm 235}) ; L* = 44
+(def base02    {:gui "#2a303b" :cterm 236}) ; L* = 50
+(def base01    {:gui "#3b4351" :cterm 238}) ; L* = 58
+(def base00    {:gui "#586374" :cterm 241}) ; L* = 68
+(def base2     {:gui "#c3d5ec" :cterm 252}) ; L* = 93
+(def base3     {:gui "#edf5ff" :cterm 255}) ; L* = 99
+(def red01     {:gui "#681c36" :cterm 52})
+(def red1      {:gui "#e91e63" :cterm 161})
+(def teal01    {:gui "#134242" :cterm 23})
+(def teal2     {:gui "#36c2c2" :cterm 44})
+(def cyan01    {:gui "#064253" :cterm 23})
+(def cyan1     {:gui "#169ec4" :cterm 38})
+(def cyan2     {:gui "#56c7ee" :cterm 81})
+(def cyan3     {:gui "#bcebfe" :cterm 153})
+(def blue1     {:gui "#537dd5" :cterm 68})
+(def blue2     {:gui "#8baafe" :cterm 111})
+(def blue3     {:gui "#c9d4fd" :cterm 189})
+(def violet1   {:gui "#996ddb" :cterm 98})
+(def violet2   {:gui "#c398fe" :cterm 183})
+(def violet3   {:gui "#e2ccfe" :cterm 225})
+(def magenta01 {:gui "#68024b" :cterm 89})
+(def magenta1  {:gui "#e242ac" :cterm 162})
+(def magenta2  {:gui "#fe7ecd" :cterm 213})
+(def magenta3  {:gui "#ffc3e4" :cterm 218})
 (def bold      "bold")
 (def underline "underline")
 (def undercurl "undercurl")
@@ -36,25 +36,28 @@
 
 (def syntax-styles
  {:Normal          {:fg base2 :bg base03}
-  :Cursor          {:fg none :bg base3 :deco bold}
+  :Cursor          {:fg none :bg base3 :deco none}
   :CursorIM        {:fg none :bg base3}
-  :CursorLine      {:fg none :bg base02}
-  :CursorColumn    {:fg none :bg base02}
-  :Visual          {:fg none :bg base01}
-  :VisualNOS       {:deco underline}
-  :Folded          {:fg base2 :bg base02}
-  :FoldColumn      {:fg base2 :bg base03}
-  :Title           {:fg magenta1 :bg none}
-  :StatusLine      {:fg base2 :bg base01}
-  :StatusLineNC    {:fg base00 :bg base02}
-  :VertSplit       {:fg base02 :bg base02}
-  :LineNr          {:fg base00 :bg base02}
+  :CursorLine      {:fg none :bg base02 :deco bold}
+  :CursorColumn    {:fg none :bg base02 :deco none}
+  :Visual          {:fg none :bg base01 :deco none}
+  :VisualNOS       {:fg fg :deco underline}
+
+  :Folded          {:fg base2 :bg base02 :deco none}
+  :FoldColumn      {:fg base2 :bg base03 :deco none}
+  :Title           {:fg magenta1 :bg none :deco bold}
+  :StatusLine      {:fg base2 :bg base01 :deco none}
+  :StatusLineNC    {:fg base00 :bg base02 :deco none}
+  :VertSplit       {:fg base02 :bg base02 :deco none}
+  :LineNr          {:fg base00 :bg base02 :deco none}
   :CursorLineNr    {:fg base3 :bg base00 :deco bold}
   :SpecialKey      {:fg cyan01 :bg cyan1 :deco bold}
   :NonText         {:fg base00 :bg base03 :deco none}
   :MatchParen      {:fg red1 :bg none :deco bold}
+
   :Comment         {:fg base00 :deco none}
   :Constant        {:fg teal2 :bg teal01 :deco none}
+  :String          :Constant
   :Number          {:fg cyan2 :bg cyan01 :deco none}
   :Identifier      {:fg base3 :deco bold}
   :Function        {:fg base3 :deco bold}
@@ -71,6 +74,7 @@
   :Ignore          {:fg bg}
   :Error           {:fg red1 :bg red01 :deco bold}
   :Todo            {:fg base2 :bg base03 :deco bold}
+
   :IncSearch       {:fg base03 :bg cyan1 :deco bold}
   :Search          {:fg base03 :bg cyan2 :deco none}
   :Pmenu           {:fg base2 :bg base02 :deco none}
@@ -80,10 +84,12 @@
   :TabLine         {:fg base2 :bg base03 :deco none}
   :TabLineSel      {:fg base03 :bg magenta1 :deco bold}
   :TabLineFill     {:fg base2 :bg base03 :deco none}
+
   :SpellBad        {:deco undercurl}
   :SpellCap        {:deco undercurl}
   :SpellRare       {:deco undercurl}
   :SpellLocal      {:deco undercurl}
+
   :DiffAdd         {:fg cyan1 :bg cyan01 :deco none}
   :DiffChange      {:fg magenta1 :bg magenta01 :deco none}
   :DiffDelete      {:fg magenta1 :bg magenta01 :deco none}
@@ -101,33 +107,32 @@
   :ColorColumn     {:fg none :bg red01 :deco none}
   :GitGutterAdd    {:fg cyan1 :bg base02 :deco bold}
   :GitGutterChange {:fg magenta1 :bg base02 :deco bold}
-  :GitGutterDelete {:fg magenta1 :bg base02 :deco bold}})
+  :GitGutterDelete {:fg magenta1 :bg base02 :deco bold}
 
-(def syntax-links
-  {:String         :Constant
-   :makeIdent      :Type
-   :makeSpecTarget :Special
-   :makeTarget     :Function})
+  :makeIdent :Type
+  :makeSpecTarget :Special
+  :makeTarget :Function
+  :makeCommands none})
 
-(def terminal-colors
-  [[:idk base03]
-   [:error-red magenta2]
-   [:cdh teal2]
-   [:commit-yellow violet2]
-   [:dirs cyan2]
-   [:prompt-and-symb-links blue1]
-   [:idk violet3]
-   [:normal-text base3]
-   [:highlighting-bkgd blue3]
-   [:idk base03]
-   [:idk base03]
-   [:idk base03]
-   [:previous-flags blue2]
-   [:valid-command violet2]
-   [:idk base03]
-   [:idk base03]])
+(def terminal-styles
+  [base03
+   magenta2
+   teal2
+   violet2
+   cyan2
+   blue1
+   violet3
+   base3
+   blue3
+   base03
+   base03
+   base03
+   blue2
+   violet2
+   base03
+   base03])
 
-(def lightline-config
+(def lightline-styles
   {:normal
     {:left    [{:fg base03 :bg blue1} {:fg base03 :bg blue2}]
      :middle  [{:fg base03 :bg blue3}]
@@ -153,63 +158,90 @@
      :tabsel  [{:fg base03 :bg violet1}]}})
 
 ;; Syntax Highlighting Functions
-(defn style->vimscript [[syntax-group style]]
-  (let [guifg (when (:fg style)   (str " guifg=" (:fg style)))
-        guibg (when (:bg style)   (str " guibg=" (:bg style)))
-        gui   (when (:deco style) (str " gui=" (:deco style)))]
-    (str "hi " (symbol syntax-group) guifg guibg gui)))
 
-(defn link->vimscript [[syntax-group-1 syntax-group-2]]
-  (str "hi link " (symbol syntax-group-1) " " (symbol syntax-group-2)))
+(defn syntax-style->vs [[syntax-group style]]
+  (cond
+   ;; If keyword, this is a syntax group linking to another one
+   (keyword? style)
+   (str "hi link " (symbol syntax-group) " " (symbol style))
+
+   ;; If map, this is a standard definition with colors and decoration
+   (map? style)
+   (let [{:keys [fg bg deco]} style]
+     (->> ["hi"
+           (symbol syntax-group)
+           (when fg (str "guifg=" (:gui fg) " ctermfg=" (:cterm fg)))
+           (when bg (str "guibg=" (:gui bg) " ctermbg=" (:cterm fg)))
+           (when deco (str "gui=" deco " cterm=" deco))]
+          ;; filter identity idiom removes falsey values from collection
+          (filter identity)
+          (str/join " ")))))
+
+(comment (syntax-style->vs [:Comment {:fg magenta01 :deco none}]))
 
 ;; Terminal Color Functions
-(defn terminal-vimscript-command [index item]
-  (str "let g:terminal_color_" index "  = '" (last item) "'"))
+(defn terminal-style->vs [index color]
+  (str "let g:terminal_color_" index "  = '" (:gui color) "'"))
 
 ;; Lightline Functions
-(defn keyword->vimscript-key [k]
+(defn keyword->vs [k]
   (str "'" (symbol k) "':"))
 
-(defn lightline-style->vimscript [style]
-  (str "[\"" (:fg style) "\",\"" (:bg style) "\"],"))
+(defn ll-text-styles->vs [{:keys [fg bg]}]
+  (str "[\"" (:gui fg) "\",\"" (:gui bg) "\"],"))
 
-(defn position-config->vimscript [[position styles]]
-  (let [inner (str/join
-                (map lightline-style->vimscript styles))]
-    (str "\\   " (keyword->vimscript-key position) "[" inner "],")))
+(defn ll-position-styles->vs [[position text-styles]]
+  (str "\\   " (keyword->vs position) "[" (str/join (map ll-text-styles->vs text-styles)) "],"))
 
-(defn lightline-mode-config->vimscript [[mode mode-config]]
-  (let [inner (str/join "\n"
-                (map position-config->vimscript mode-config))]
-    (str "\\ " (keyword->vimscript-key mode) "{\n" inner "},")))
+(defn ll-mode-styles->vs [[mode position-styles]]
+  (str/join
+   "\n"
+   (flatten
+    [(str "\\ " (keyword->vs-key mode) "{")
+     (map ll-position-styles->vs position-styles)
+     "\\ },"])))
 
-;; Generate vimscript 
-(def main-colorscheme-vimscript
-  (str/join "\n"
-   (concat
-     ["\" Styles" "\" =========="]
-     (map style->vimscript syntax-styles)
-     ["" "\" Links" "\" =========="]
-     (map link->vimscript syntax-links)
-     ["" "\" Terminal Colors" "\" ==========="]
-     (map-indexed terminal-vimscript-command terminal-colors)))) 
+;; Generate vimscript
 
-(def lightline-colorscheme-vimscript
-  (str/join "\n"
-    (concat
-      ["let s:config={"]
-      (map lightline-mode-config->vimscript lightline-config)
-      ["\\}" "let g:lightline#colorscheme#hydrangea#palette = lightline#colorscheme#fill(s:config)"])))
+(defn build-main-colorscheme-vs [syntax-styles terminal-styles]
+  (str/join
+   "\n"
+   (flatten
+    ["\" Styles"
+     "\" =========="
+     (map syntax-style->vs syntax-styles)
+     ""
+     (if terminal-styles
+       ["\" Terminal Colors"
+        "\" ==========="
+        (map-indexed terminal-style->vs terminal-styles)])])))
+
+(defn build-lightline-colorscheme-vs [lightline-styles]
+  (when lightline-styles
+    (str/join
+     "\n"
+     (flatten
+      ["let s:config={"
+       (map ll-mode-styles->vs lightline-styles)
+       "\\}"
+       "let g:lightline#colorscheme#hydrangea#palette = lightline#colorscheme#fill(s:config)"]))))
 
 ;; Write vimscript to files
-(def colorscheme-file-path "colors/hydrangea.vim")
-(spit colorscheme-file-path main-colorscheme-vimscript)
-(println (str main-colorscheme-vimscript "\n" "Wrote to file: " colorscheme-file-path))
+(defn build [syntax-styles terminal-styles lightline-styles]
+  (let [main-colorscheme-vs (build-main-colorscheme-vs syntax-styles terminal-styles)
+        main-colorscheme-path "colors/hydrangea.vim"
+        lightline-colorscheme-vs (build-lightline-colorscheme-vs lightline-styles)
+        lightline-colorscheme-path "autoload/lightline/colorscheme/hydrangea.vim"]
+    (spit main-colorscheme-path main-colorscheme-vs)
+    (println main-colorscheme-vs)
+    (println (str "Wrote to file: " main-colorscheme-path))
+    (if lightline-colorscheme-vs
+      (spit lightline-colorscheme-path lightline-colorscheme-vs)
+      (println lightline-colorscheme-vs)
+      (println (str "Wrote to file: " lightline-colorscheme-path))
+      (println "Skipping lightline colorscheme..."))))
 
-(print lightline-colorscheme-vimscript)
-(def lightline-colorscheme-file-path "autoload/lightline/colorscheme/hydrangea.vim")
-(spit lightline-colorscheme-file-path lightline-colorscheme-vimscript)
-(println (str "\n" "Wrote to file: " lightline-colorscheme-file-path))
+(comment (build syntax-styles terminal-styles lightline-styles))
 
 
 

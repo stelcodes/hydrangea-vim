@@ -1,79 +1,77 @@
 " Styles
 " ==========
-hi Typedef guifg=#537dd5 gui=bold
-hi Constant guifg=#36c2c2 guibg=#134242 gui=NONE
-hi PmenuSel guifg=#edf5ff guibg=#3b4351 gui=bold
-hi SpellBad gui=undercurl
-hi SpecialKey guifg=#064253 guibg=#169ec4 gui=bold
-hi Function guifg=#edf5ff gui=bold
-hi Underlined guifg=fg gui=underline
-hi Normal guifg=#c3d5ec guibg=#1e222c
-hi DiffDelete guifg=#e242ac guibg=#68024b gui=NONE
-hi DiffText guifg=#ffc3e4 guibg=#68024b gui=bold
-hi GitGutterChange guifg=#e242ac guibg=#2a303b gui=bold
-hi Pmenu guifg=#c3d5ec guibg=#2a303b gui=NONE
-hi StatusLineNC guifg=#586374 guibg=#2a303b
-hi StatusLine guifg=#c3d5ec guibg=#3b4351
-hi Comment guifg=#586374 gui=NONE
-hi Todo guifg=#c3d5ec guibg=#1e222c gui=bold
-hi TabLineSel guifg=#1e222c guibg=#e242ac gui=bold
-hi ErrorMsg guifg=#e91e63 guibg=NONE gui=NONE
-hi diffAdded guifg=#169ec4 guibg=#064253 gui=NONE
-hi ColorColumn guifg=NONE guibg=#681c36 gui=NONE
-hi WarningMsg guifg=#e91e63 gui=NONE
-hi Directory guifg=#36c2c2 gui=NONE
-hi TabLineFill guifg=#c3d5ec guibg=#1e222c gui=NONE
-hi Title guifg=#e242ac guibg=NONE
-hi CursorLine guifg=NONE guibg=#2a303b
-hi Structure guifg=#e242ac gui=NONE
-hi VisualNOS gui=underline
-hi SignColumn guifg=#c3d5ec guibg=#2a303b gui=NONE
-hi FoldColumn guifg=#c3d5ec guibg=#1e222c
-hi Identifier guifg=#edf5ff gui=bold
-hi ModeMsg gui=bold
-hi Include guifg=#996ddb gui=NONE
-hi GitGutterAdd guifg=#169ec4 guibg=#2a303b gui=bold
-hi Number guifg=#56c7ee guibg=#064253 gui=NONE
-hi WildMenu guifg=#edf5ff guibg=#586374 gui=bold
-hi IncSearch guifg=#1e222c guibg=#169ec4 gui=bold
-hi NonText guifg=#586374 guibg=#1e222c gui=NONE
-hi TabLine guifg=#c3d5ec guibg=#1e222c gui=NONE
-hi DiffChange guifg=#e242ac guibg=#68024b gui=NONE
-hi MoreMsg guifg=#537dd5 gui=NONE
-hi CursorColumn guifg=NONE guibg=#2a303b
-hi PreProc guifg=#c398fe gui=NONE
-hi diffRemoved guifg=#e242ac guibg=#68024b gui=NONE
-hi Visual guifg=NONE guibg=#3b4351
-hi MatchParen guifg=#e91e63 guibg=NONE gui=bold
-hi CursorLineNr guifg=#edf5ff guibg=#586374 gui=bold
-hi Folded guifg=#c3d5ec guibg=#2a303b
-hi Operator guifg=#e242ac gui=NONE
-hi Type guifg=#e242ac gui=NONE
-hi GitGutterDelete guifg=#e242ac guibg=#2a303b gui=bold
-hi Question guifg=fg gui=NONE
-hi Error guifg=#e91e63 guibg=#681c36 gui=bold
-hi DiffAdd guifg=#169ec4 guibg=#064253 gui=NONE
-hi Statement guifg=#537dd5 gui=bold
-hi Cursor guifg=NONE guibg=#edf5ff gui=bold
-hi SpellLocal gui=undercurl
-hi Special guifg=#8baafe guibg=NONE gui=bold
-hi Search guifg=#1e222c guibg=#56c7ee gui=NONE
-hi PmenuThumb guibg=#586374 gui=NONE
-hi StorageClass guifg=#537dd5 gui=bold
-hi CursorIM guifg=NONE guibg=#edf5ff
-hi PmenuSbar guibg=#2a303b gui=NONE
-hi SpellRare gui=undercurl
-hi VertSplit guifg=#2a303b guibg=#2a303b
-hi Ignore guifg=bg
-hi SpellCap gui=undercurl
-hi LineNr guifg=#586374 guibg=#2a303b
+hi Typedef guifg=#537dd5 ctermfg=68 gui=bold cterm=bold
+hi Constant guifg=#36c2c2 ctermfg=44 guibg=#134242 ctermbg=44 gui=NONE cterm=NONE
+hi PmenuSel guifg=#edf5ff ctermfg=255 guibg=#3b4351 ctermbg=255 gui=bold cterm=bold
 
-" Links
-" ==========
+hi SpellBad gui=undercurl cterm=undercurl
+hi SpecialKey guifg=#064253 ctermfg=23 guibg=#169ec4 ctermbg=23 gui=bold cterm=bold
+hi Function guifg=#edf5ff ctermfg=255 gui=bold cterm=bold
+hi Underlined guifg= ctermfg= gui=underline cterm=underline
+hi Normal guifg=#c3d5ec ctermfg=252 guibg=#1e222c ctermbg=252
+hi DiffDelete guifg=#e242ac ctermfg=162 guibg=#68024b ctermbg=162 gui=NONE cterm=NONE
+hi DiffText guifg=#ffc3e4 ctermfg=218 guibg=#68024b ctermbg=218 gui=bold cterm=bold
+hi GitGutterChange guifg=#e242ac ctermfg=162 guibg=#2a303b ctermbg=162 gui=bold cterm=bold
 hi link makeSpecTarget Special
+hi Pmenu guifg=#c3d5ec ctermfg=252 guibg=#2a303b ctermbg=252 gui=NONE cterm=NONE
+hi StatusLineNC guifg=#586374 ctermfg=241 guibg=#2a303b ctermbg=241 gui=NONE cterm=NONE
+hi StatusLine guifg=#c3d5ec ctermfg=252 guibg=#3b4351 ctermbg=252 gui=NONE cterm=NONE
+hi Comment guifg=#586374 ctermfg=241 gui=NONE cterm=NONE
+hi Todo guifg=#c3d5ec ctermfg=252 guibg=#1e222c ctermbg=252 gui=bold cterm=bold
+hi TabLineSel guifg=#1e222c ctermfg=235 guibg=#e242ac ctermbg=235 gui=bold cterm=bold
+hi ErrorMsg guifg=#e91e63 ctermfg=161 guibg= ctermbg=161 gui=NONE cterm=NONE
+hi diffAdded guifg=#169ec4 ctermfg=38 guibg=#064253 ctermbg=38 gui=NONE cterm=NONE
+hi ColorColumn guifg= ctermfg= guibg=#681c36 ctermbg= gui=NONE cterm=NONE
+hi WarningMsg guifg=#e91e63 ctermfg=161 gui=NONE cterm=NONE
+hi Directory guifg=#36c2c2 ctermfg=44 gui=NONE cterm=NONE
+hi TabLineFill guifg=#c3d5ec ctermfg=252 guibg=#1e222c ctermbg=252 gui=NONE cterm=NONE
+hi Title guifg=#e242ac ctermfg=162 guibg= ctermbg=162 gui=bold cterm=bold
+hi CursorLine guifg= ctermfg= guibg=#2a303b ctermbg= gui=bold cterm=bold
+hi Structure guifg=#e242ac ctermfg=162 gui=NONE cterm=NONE
+hi VisualNOS guifg= ctermfg= gui=underline cterm=underline
+hi SignColumn guifg=#c3d5ec ctermfg=252 guibg=#2a303b ctermbg=252 gui=NONE cterm=NONE
+hi FoldColumn guifg=#c3d5ec ctermfg=252 guibg=#1e222c ctermbg=252 gui=NONE cterm=NONE
+hi Identifier guifg=#edf5ff ctermfg=255 gui=bold cterm=bold
+hi ModeMsg gui=bold cterm=bold
+hi Include guifg=#996ddb ctermfg=98 gui=NONE cterm=NONE
 hi link makeIdent Type
+hi GitGutterAdd guifg=#169ec4 ctermfg=38 guibg=#2a303b ctermbg=38 gui=bold cterm=bold
+hi Number guifg=#56c7ee ctermfg=81 guibg=#064253 ctermbg=81 gui=NONE cterm=NONE
+hi WildMenu guifg=#edf5ff ctermfg=255 guibg=#586374 ctermbg=255 gui=bold cterm=bold
+hi IncSearch guifg=#1e222c ctermfg=235 guibg=#169ec4 ctermbg=235 gui=bold cterm=bold
+hi NonText guifg=#586374 ctermfg=241 guibg=#1e222c ctermbg=241 gui=NONE cterm=NONE
+hi TabLine guifg=#c3d5ec ctermfg=252 guibg=#1e222c ctermbg=252 gui=NONE cterm=NONE
 hi link makeTarget Function
+hi DiffChange guifg=#e242ac ctermfg=162 guibg=#68024b ctermbg=162 gui=NONE cterm=NONE
+hi MoreMsg guifg=#537dd5 ctermfg=68 gui=NONE cterm=NONE
+hi CursorColumn guifg= ctermfg= guibg=#2a303b ctermbg= gui=NONE cterm=NONE
+hi PreProc guifg=#c398fe ctermfg=183 gui=NONE cterm=NONE
+hi diffRemoved guifg=#e242ac ctermfg=162 guibg=#68024b ctermbg=162 gui=NONE cterm=NONE
+hi Visual guifg= ctermfg= guibg=#3b4351 ctermbg= gui=NONE cterm=NONE
+hi MatchParen guifg=#e91e63 ctermfg=161 guibg= ctermbg=161 gui=bold cterm=bold
+hi CursorLineNr guifg=#edf5ff ctermfg=255 guibg=#586374 ctermbg=255 gui=bold cterm=bold
+hi Folded guifg=#c3d5ec ctermfg=252 guibg=#2a303b ctermbg=252 gui=NONE cterm=NONE
+hi Operator guifg=#e242ac ctermfg=162 gui=NONE cterm=NONE
+hi Type guifg=#e242ac ctermfg=162 gui=NONE cterm=NONE
+hi GitGutterDelete guifg=#e242ac ctermfg=162 guibg=#2a303b ctermbg=162 gui=bold cterm=bold
+hi Question guifg= ctermfg= gui=NONE cterm=NONE
+hi Error guifg=#e91e63 ctermfg=161 guibg=#681c36 ctermbg=161 gui=bold cterm=bold
+hi DiffAdd guifg=#169ec4 ctermfg=38 guibg=#064253 ctermbg=38 gui=NONE cterm=NONE
+hi Statement guifg=#537dd5 ctermfg=68 gui=bold cterm=bold
+hi Cursor guifg= ctermfg= guibg=#edf5ff ctermbg= gui=NONE cterm=NONE
+hi SpellLocal gui=undercurl cterm=undercurl
+hi Special guifg=#8baafe ctermfg=111 guibg= ctermbg=111 gui=bold cterm=bold
+hi Search guifg=#1e222c ctermfg=235 guibg=#56c7ee ctermbg=235 gui=NONE cterm=NONE
+hi PmenuThumb guibg=#586374 ctermbg= gui=NONE cterm=NONE
+hi StorageClass guifg=#537dd5 ctermfg=68 gui=bold cterm=bold
+hi CursorIM guifg= ctermfg= guibg=#edf5ff ctermbg=
+hi PmenuSbar guibg=#2a303b ctermbg= gui=NONE cterm=NONE
+hi SpellRare gui=undercurl cterm=undercurl
 hi link String Constant
+hi VertSplit guifg=#2a303b ctermfg=236 guibg=#2a303b ctermbg=236 gui=NONE cterm=NONE
+hi Ignore guifg= ctermfg=
+hi SpellCap gui=undercurl cterm=undercurl
+hi LineNr guifg=#586374 ctermfg=241 guibg=#2a303b ctermbg=241 gui=NONE cterm=NONE
 
 " Terminal Colors
 " ===========
