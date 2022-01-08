@@ -35,84 +35,84 @@
 (def bg        "bg")
 
 (def syntax-styles
- {:Normal          {:fg base2 :bg base03}
-  :Cursor          {:fg none :bg base3 :deco none}
-  :CursorIM        {:fg none :bg base3}
-  :CursorLine      {:fg none :bg base02 :deco bold}
-  :CursorColumn    {:fg none :bg base02 :deco none}
-  :Visual          {:fg none :bg base01 :deco none}
-  :VisualNOS       {:fg fg :deco underline}
+  [:Normal          {:fg base2 :bg base03}
+   :Cursor          {:fg none :bg base3 :deco none}
+   :CursorIM        {:fg none :bg base3}
+   :CursorLine      {:fg none :bg base02 :deco bold}
+   :CursorColumn    {:fg none :bg base02 :deco none}
+   :Visual          {:fg none :bg base01 :deco none}
+   :VisualNOS       {:fg fg :deco underline}
 
-  :Folded          {:fg base2 :bg base02 :deco none}
-  :FoldColumn      {:fg base2 :bg base03 :deco none}
-  :Title           {:fg magenta1 :bg none :deco bold}
-  :StatusLine      {:fg base2 :bg base01 :deco none}
-  :StatusLineNC    {:fg base00 :bg base02 :deco none}
-  :VertSplit       {:fg base02 :bg base02 :deco none}
-  :LineNr          {:fg base00 :bg base02 :deco none}
-  :CursorLineNr    {:fg base3 :bg base00 :deco bold}
-  :SpecialKey      {:fg cyan01 :bg cyan1 :deco bold}
-  :NonText         {:fg base00 :bg base03 :deco none}
-  :MatchParen      {:fg red1 :bg none :deco bold}
+   :Folded          {:fg base2 :bg base02 :deco none}
+   :FoldColumn      {:fg base2 :bg base03 :deco none}
+   :Title           {:fg magenta1 :bg none :deco bold}
+   :StatusLine      {:fg base2 :bg base01 :deco none}
+   :StatusLineNC    {:fg base00 :bg base02 :deco none}
+   :VertSplit       {:fg base02 :bg base02 :deco none}
+   :LineNr          {:fg base00 :bg base02 :deco none}
+   :CursorLineNr    {:fg base3 :bg base00 :deco bold}
+   :SpecialKey      {:fg cyan01 :bg cyan1 :deco bold}
+   :NonText         {:fg base00 :bg base03 :deco none}
+   :MatchParen      {:fg red1 :bg none :deco bold}
 
-  :Comment         {:fg base00 :deco none}
-  :Constant        {:fg teal2 :bg teal01 :deco none}
-  :String          :Constant
-  :Number          {:fg cyan2 :bg cyan01 :deco none}
-  :Identifier      {:fg base3 :deco bold}
-  :Function        {:fg base3 :deco bold}
-  :Statement       {:fg blue1 :deco bold}
-  :Operator        {:fg magenta1 :deco none}
-  :Include         {:fg violet1 :deco none}
-  :PreProc         {:fg violet2 :deco none}
-  :Type            {:fg magenta1 :deco none}
-  :StorageClass    {:fg blue1 :deco bold}
-  :Structure       {:fg magenta1 :deco none}
-  :Typedef         {:fg blue1 :deco bold}
-  :Special         {:fg blue2 :bg none :deco bold}
-  :Underlined      {:fg fg :deco underline}
-  :Ignore          {:fg bg}
-  :Error           {:fg red1 :bg red01 :deco bold}
-  :Todo            {:fg base2 :bg base03 :deco bold}
+   :Comment         {:fg base00 :deco none}
+   :Constant        {:fg teal2 :bg teal01 :deco none}
+   :String          :Constant
+   :Number          {:fg cyan2 :bg cyan01 :deco none}
+   :Identifier      {:fg base3 :deco bold}
+   :Function        {:fg base3 :deco bold}
+   :Statement       {:fg blue1 :deco bold}
+   :Operator        {:fg magenta1 :deco none}
+   :Include         {:fg violet1 :deco none}
+   :PreProc         {:fg violet2 :deco none}
+   :Type            {:fg magenta1 :deco none}
+   :StorageClass    {:fg blue1 :deco bold}
+   :Structure       {:fg magenta1 :deco none}
+   :Typedef         {:fg blue1 :deco bold}
+   :Special         {:fg blue2 :bg none :deco bold}
+   :Underlined      {:fg fg :deco underline}
+   :Ignore          {:fg bg}
+   :Error           {:fg red1 :bg red01 :deco bold}
+   :Todo            {:fg base2 :bg base03 :deco bold}
 
-  :IncSearch       {:fg base03 :bg cyan1 :deco bold}
-  :Search          {:fg base03 :bg cyan2 :deco none}
-  :Pmenu           {:fg base2 :bg base02 :deco none}
-  :PmenuSel        {:fg base3 :bg base01 :deco bold}
-  :PmenuSbar       {:bg base02 :deco none}
-  :PmenuThumb      {:bg base00 :deco none}
-  :TabLine         {:fg base2 :bg base03 :deco none}
-  :TabLineSel      {:fg base03 :bg magenta1 :deco bold}
-  :TabLineFill     {:fg base2 :bg base03 :deco none}
+   :IncSearch       {:fg base03 :bg cyan1 :deco bold}
+   :Search          {:fg base03 :bg cyan2 :deco none}
+   :Pmenu           {:fg base2 :bg base02 :deco none}
+   :PmenuSel        {:fg base3 :bg base01 :deco bold}
+   :PmenuSbar       {:bg base02 :deco none}
+   :PmenuThumb      {:bg base00 :deco none}
+   :TabLine         {:fg base2 :bg base03 :deco none}
+   :TabLineSel      {:fg base03 :bg magenta1 :deco bold}
+   :TabLineFill     {:fg base2 :bg base03 :deco none}
 
-  :SpellBad        {:deco undercurl}
-  :SpellCap        {:deco undercurl}
-  :SpellRare       {:deco undercurl}
-  :SpellLocal      {:deco undercurl}
+   :SpellBad        {:deco undercurl}
+   :SpellCap        {:deco undercurl}
+   :SpellRare       {:deco undercurl}
+   :SpellLocal      {:deco undercurl}
 
-  :DiffAdd         {:fg cyan1 :bg cyan01 :deco none}
-  :DiffChange      {:fg magenta1 :bg magenta01 :deco none}
-  :DiffDelete      {:fg magenta1 :bg magenta01 :deco none}
-  :DiffText        {:fg magenta3 :bg magenta01 :deco bold}
-  :diffAdded       {:fg cyan1 :bg cyan01 :deco none}
-  :diffRemoved     {:fg magenta1 :bg magenta01 :deco none}
-  :Directory       {:fg teal2 :deco none}
-  :ErrorMsg        {:fg red1 :bg none :deco none}
-  :SignColumn      {:fg base2 :bg base02 :deco none}
-  :MoreMsg         {:fg blue1 :deco none}
-  :ModeMsg         {:deco bold}
-  :Question        {:fg fg :deco none}
-  :WarningMsg      {:fg red1 :deco none}
-  :WildMenu        {:fg base3 :bg base00 :deco bold}
-  :ColorColumn     {:fg none :bg red01 :deco none}
-  :GitGutterAdd    {:fg cyan1 :bg base02 :deco bold}
-  :GitGutterChange {:fg magenta1 :bg base02 :deco bold}
-  :GitGutterDelete {:fg magenta1 :bg base02 :deco bold}
+   :DiffAdd         {:fg cyan1 :bg cyan01 :deco none}
+   :DiffChange      {:fg magenta1 :bg magenta01 :deco none}
+   :DiffDelete      {:fg magenta1 :bg magenta01 :deco none}
+   :DiffText        {:fg magenta3 :bg magenta01 :deco bold}
+   :diffAdded       {:fg cyan1 :bg cyan01 :deco none}
+   :diffRemoved     {:fg magenta1 :bg magenta01 :deco none}
+   :Directory       {:fg teal2 :deco none}
+   :ErrorMsg        {:fg red1 :bg none :deco none}
+   :SignColumn      {:fg base2 :bg base02 :deco none}
+   :MoreMsg         {:fg blue1 :deco none}
+   :ModeMsg         {:deco bold}
+   :Question        {:fg fg :deco none}
+   :WarningMsg      {:fg red1 :deco none}
+   :WildMenu        {:fg base3 :bg base00 :deco bold}
+   :ColorColumn     {:fg none :bg red01 :deco none}
+   :GitGutterAdd    {:fg cyan1 :bg base02 :deco bold}
+   :GitGutterChange {:fg magenta1 :bg base02 :deco bold}
+   :GitGutterDelete {:fg magenta1 :bg base02 :deco bold}
 
-  :makeIdent :Type
-  :makeSpecTarget :Special
-  :makeTarget :Function
-  :makeCommands none})
+   :makeIdent :Type
+   :makeSpecTarget :Special
+   :makeTarget :Function
+   :makeCommands none])
 
 (def terminal-styles
   [base03
@@ -134,28 +134,28 @@
 
 (def lightline-styles
   {:normal
-    {:left    [{:fg base03 :bg blue1} {:fg base03 :bg blue2}]
-     :middle  [{:fg base03 :bg blue3}]
-     :right   [{:fg base03 :bg blue1} {:fg base03 :bg blue2}]
-     :error   [{:fg red1 :bg base02}]
-     :warning [{:fg violet1 :bg base01}]}
+   {:left    [{:fg base03 :bg blue1} {:fg base03 :bg blue2}]
+    :middle  [{:fg base03 :bg blue3}]
+    :right   [{:fg base03 :bg blue1} {:fg base03 :bg blue2}]
+    :error   [{:fg red1 :bg base02}]
+    :warning [{:fg violet1 :bg base01}]}
    :insert
-    {:left    [{:fg base03 :bg cyan1} {:fg base03 :bg cyan2}]
-     :middle  [{:fg base03 :bg cyan3}]
-     :right   [{:fg base03 :bg cyan1} {:fg base03 :bg cyan2}]}
+   {:left    [{:fg base03 :bg cyan1} {:fg base03 :bg cyan2}]
+    :middle  [{:fg base03 :bg cyan3}]
+    :right   [{:fg base03 :bg cyan1} {:fg base03 :bg cyan2}]}
    :visual
-    {:left    [{:fg base03 :bg violet1} {:fg base03 :bg violet2}]
-     :middle  [{:fg base03 :bg violet3}]
-     :right   [{:fg base03 :bg violet1} {:fg base03 :bg violet2}]}
+   {:left    [{:fg base03 :bg violet1} {:fg base03 :bg violet2}]
+    :middle  [{:fg base03 :bg violet3}]
+    :right   [{:fg base03 :bg violet1} {:fg base03 :bg violet2}]}
    :replace
-    {:left    [{:fg base03 :bg magenta1} {:fg base03 :bg magenta2}]
-     :middle  [{:fg base03 :bg magenta3}]
-     :right   [{:fg base03 :bg magenta1} {:fg base03 :bg magenta2}]}
+   {:left    [{:fg base03 :bg magenta1} {:fg base03 :bg magenta2}]
+    :middle  [{:fg base03 :bg magenta3}]
+    :right   [{:fg base03 :bg magenta1} {:fg base03 :bg magenta2}]}
    :tabline
-    {:left    [{:fg base2 :bg base01}]
-     :middle  [{:fg base2 :bg base03}]
-     :right   [{:fg base03 :bg violet1} {:fg base02 :bg violet2}]
-     :tabsel  [{:fg base03 :bg violet1}]}})
+   {:left    [{:fg base2 :bg base01}]
+    :middle  [{:fg base2 :bg base03}]
+    :right   [{:fg base03 :bg violet1} {:fg base02 :bg violet2}]
+    :tabsel  [{:fg base03 :bg violet1}]}})
 
 ;; Syntax Highlighting Functions
 
@@ -201,26 +201,33 @@
   (str/join
    "\n"
    (flatten
-    [(str "\\ " (keyword->vs-key mode) "{")
+    [(str "\\ " (keyword->vs mode) "{")
      (map ll-position-styles->vs position-styles)
      "\\ },"])))
 
 ;; Generate vimscript
 
-(defn build-main-colorscheme-vs [syntax-styles terminal-styles]
+(defn build-main [syntax-styles terminal-styles]
   (str/join
    "\n"
    (flatten
-    ["\" Styles"
+    ["hi clear"
+     "if exists('syntax_on')"
+     "  syntax reset"
+     "endif"
+     "let g:colors_name = 'hydrangea'"
+     "set background=dark"
+     ""
+     "\" Styles"
      "\" =========="
-     (map syntax-style->vs syntax-styles)
+     (map syntax-style->vs (partition 2 syntax-styles))
      ""
      (if terminal-styles
        ["\" Terminal Colors"
         "\" ==========="
         (map-indexed terminal-style->vs terminal-styles)])])))
 
-(defn build-lightline-colorscheme-vs [lightline-styles]
+(defn build-lightline [lightline-styles]
   (when lightline-styles
     (str/join
      "\n"
@@ -232,20 +239,18 @@
 
 ;; Write vimscript to files
 (defn build [syntax-styles terminal-styles lightline-styles]
-  (let [main-colorscheme-vs (build-main-colorscheme-vs syntax-styles terminal-styles)
-        main-colorscheme-path "colors/hydrangea.vim"
-        lightline-colorscheme-vs (build-lightline-colorscheme-vs lightline-styles)
-        lightline-colorscheme-path "autoload/lightline/colorscheme/hydrangea.vim"]
+  (let [main-colorscheme-vs (build-main syntax-styles terminal-styles)
+        main-colorscheme-path "colors/hydrangea.vim"]
     (spit main-colorscheme-path main-colorscheme-vs)
     (println main-colorscheme-vs)
     (println (str "Wrote to file: " main-colorscheme-path))
-    (if lightline-colorscheme-vs
-      (spit lightline-colorscheme-path lightline-colorscheme-vs)
-      (println lightline-colorscheme-vs)
-      (println (str "Wrote to file: " lightline-colorscheme-path))
+    (if lightline-styles
+      (let [lightline-colorscheme-vs (build-lightline lightline-styles)
+            lightline-colorscheme-path "autoload/lightline/colorscheme/hydrangea.vim"]
+        (spit lightline-colorscheme-path lightline-colorscheme-vs)
+        (println lightline-colorscheme-vs)
+        (println (str "Wrote to file: " lightline-colorscheme-path)))
       (println "Skipping lightline colorscheme..."))))
 
 (comment (build syntax-styles terminal-styles lightline-styles))
-
-
 
